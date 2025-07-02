@@ -1,10 +1,11 @@
-FROM node:18
+FROM node:18-bullseye
+
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y python3-pip ffmpeg curl && \
+    pip install -U yt-dlp
 
 WORKDIR /app
-
-# Install yt-dlp
-RUN apt-get update && apt-get install -y python3-pip ffmpeg && \
-    pip install -U yt-dlp
 
 COPY package.json ./
 RUN npm install
