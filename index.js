@@ -7,7 +7,7 @@ app.get('/live/:id', (req, res) => {
   const videoID = req.params.id.split('.')[0];
   const url = `https://www.youtube.com/watch?v=${videoID}`;
 
-  exec(`yt-dlp --cookies /app/cookies.txt -g "${url}"`, (error, stdout, stderr) => {
+  exec(`yt-dlp --no-write-cookies --cookies /app/cookies.txt -g "${url}"`, (error, stdout, stderr) => {
     if (error) {
       console.error(stderr || error.message);
       return res.status(500).send(stderr || error.message);
