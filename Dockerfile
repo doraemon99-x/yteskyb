@@ -1,13 +1,12 @@
-FROM node:18-bullseye
+FROM node:18
 
 WORKDIR /app
 
-COPY package.json ./
+COPY package*.json ./
 RUN npm install
 
 COPY . .
 
-ENV PORT=7860
 EXPOSE 7860
 
-CMD ["npm", "start"]
+CMD ["node", "index.js"]
